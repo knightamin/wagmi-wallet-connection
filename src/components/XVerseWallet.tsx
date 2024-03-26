@@ -4,10 +4,9 @@ import {
     BitcoinNetworkType,
     getAddress,
     getCapabilities,
-    request,
 } from 'sats-connect';
 import { useLocalStorage } from '../utils/useLocalStorage';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function XverseWallet() {
     const [paymentAddress, setPaymentAddress] =
@@ -83,21 +82,21 @@ function XverseWallet() {
         setStacksAddress(undefined);
     };
 
-    const handleGetInfo = async () => {
-        try {
-            const response = await request('getInfo', null);
+    // const handleGetInfo = async () => {
+    //     try {
+    //         const response = await request('getInfo', null);
 
-            if (response.status === 'success') {
-                alert('Success. Check console for response');
-                console.log(response.result);
-            } else {
-                alert('Error getting info. Check console for error logs');
-                console.error(response.error);
-            }
-        } catch (err) {
-            console.log(err);
-        }
-    };
+    //         if (response.status === 'success') {
+    //             alert('Success. Check console for response');
+    //             console.log(response.result);
+    //         } else {
+    //             alert('Error getting info. Check console for error logs');
+    //             console.error(response.error);
+    //         }
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // };
     const toggleNetwork = () => {
         setNetwork(
             network === BitcoinNetworkType.Testnet
@@ -121,6 +120,7 @@ function XverseWallet() {
                 },
             },
             onFinish: (response) => {
+                console.log('response', response);
                 const paymentAddressItem = response.addresses.find(
                     (address) => address.purpose === AddressPurpose.Payment
                 );
@@ -140,7 +140,6 @@ function XverseWallet() {
                 setStacksPublicKey(stacksAddressItem?.publicKey);
             },
             onCancel: () => alert('Request canceled'),
-            
         });
     };
 
@@ -229,10 +228,6 @@ function XverseWallet() {
                 <div className="container">
                     <h3>Disconnect wallet</h3>
                     <button onClick={onWalletDisconnect}>Disconnect</button>
-                </div>
-                <div className="container">
-                    <h3>Get Wallet Info</h3>
-                    <button onClick={handleGetInfo}>Request Info</button>
                 </div>
             </div>
             <h2>Stacks</h2>
