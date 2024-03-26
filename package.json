@@ -21,6 +21,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rollup-plugin-polyfill-node": "^0.13.0",
+    "sats-connect": "^1.4.1",
     "viem": "latest",
     "wagmi": "latest"
   },

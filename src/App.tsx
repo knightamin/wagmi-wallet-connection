@@ -1,6 +1,7 @@
 import { useAccount, useConnect, useDisconnect, useBalance } from 'wagmi';
 import YourGreatDApp from './Cardano';
 import VechainWallet from './components/VechainWalletButton';
+import XverseWallet from './components/XVerseWallet';
 
 function App() {
     const account = useAccount();
@@ -53,6 +54,12 @@ function App() {
                 <hr />
                 <h2>Vechain Wallet</h2>
                 <VechainWallet />
+            </div>
+
+            <div>
+                <hr />
+                <h2>XVerse Wallet</h2>
+                <XverseWallet />
             </div>
         </>
     );

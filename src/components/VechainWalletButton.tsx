@@ -17,7 +17,7 @@ const VechainWallet = (): JSX.Element => {
         if (account) {
             const acc = connex.thor.account(account);
             const info = await acc.get();
-            console.log('first', info);
+   
             setBalance(info.balance);
         }
     };
