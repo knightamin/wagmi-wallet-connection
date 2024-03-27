@@ -17,6 +17,7 @@
     "@vechain/connex": "^2.1.0",
     "@vechain/dapp-kit": "^1.0.12",
     "@vechain/dapp-kit-react": "^1.0.12",
+    "bs58": "^5.0.0",
     "node-modules-polyfill": "^0.1.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -2,7 +2,7 @@ import { useAccount, useConnect, useDisconnect, useBalance } from 'wagmi';
 import YourGreatDApp from './Cardano';
 import VechainWallet from './components/VechainWalletButton';
 import XverseWallet from './components/XVerseWallet';
-
+import bs58 from 'bs58';
 function App() {
     const account = useAccount();
     const balance = useBalance({
@@ -10,6 +10,17 @@ function App() {
     });
     const { connectors, connect, status, error } = useConnect();
     const { disconnect } = useDisconnect();
+
+    const signMessage = async () => {
+        const message = 'heelo to intraverse';
+        const { signature, publicKey } = await window?.solana.signMessage(
+            new TextEncoder().encode(message),
+            'utf8'
+        );
+        var b64 = Buffer.from(signature).toString('base64');
+        console.log('signature', b64);
+        console.log('publicKey', publicKey.toString());
+    };
 
     return (
         <>
@@ -47,6 +58,12 @@ function App() {
                 ))}
                 <div>{status}</div>
                 <div>{error?.message}</div>
+
+                <div>
+                    <button type="button" onClick={signMessage}>
+                        sign solana{' '}
+                    </button>
+                </div>
             </div>
             <YourGreatDApp />
 
